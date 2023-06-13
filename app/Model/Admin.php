@@ -9,7 +9,7 @@ class Admin extends Model
 
     public function getAdminByEmailPassword($email, $password) 
     {
-        $sql = "SELECT * FROM role WHERE email = '$email' AND password = '$password'";
+        $sql = "SELECT * FROM admin WHERE email = '$email' AND password = '$password'";
 
         $result = $this->dbConnection->query($sql);
 
@@ -26,7 +26,7 @@ class Admin extends Model
     }
 
     public function findAdminByEmail($email) {
-        $sql = "SELECT * FROM role WHERE email = '$email'";
+        $sql = "SELECT * FROM admin WHERE email = '$email'";
 
         $result = $this->dbConnection->query($sql);
 
@@ -46,7 +46,7 @@ class Admin extends Model
         $password = sha1($data['password']);
         // $password = $data['password'];
 
-        $sql = "INSERT INTO role (name, email, password) VALUES('$name', '$email', '$password')";
+        $sql = "INSERT INTO admin (name, email, password) VALUES('$name', '$email', '$password')";
 
         return $this->dbConnection->query($sql);
     }

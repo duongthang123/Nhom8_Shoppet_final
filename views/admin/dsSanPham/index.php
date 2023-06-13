@@ -83,7 +83,7 @@
                                         <?php echo $product['quantity'] ?>
                                     </td>
                                     <td>
-                                        -$205
+                                        1
                                     </td>
                                     <td>
                                         <div class="actions">

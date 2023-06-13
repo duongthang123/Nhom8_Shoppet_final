@@ -8,7 +8,7 @@ class DatabaseConnection
     {
         if(self::$connection === null) {
             try{
-                self::$connection = new mysqli("localhost", "root", "", "webbanhang");
+                self::$connection = new mysqli("localhost", "root", "", "shoppet");
             } catch(Exception $e){
                 return 0;
             };

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 25, 2023 lúc 04:40 PM
+-- Thời gian đã tạo: Th6 13, 2023 lúc 09:39 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -18,8 +18,28 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `webbanhang`
+-- Cơ sở dữ liệu: `shoppet`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `admin`
+--
+
+INSERT INTO `admin` (`id`, `name`, `email`, `password`) VALUES
+(1, 'Dương Thắng', 'admin@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef');
 
 -- --------------------------------------------------------
 
@@ -44,34 +64,6 @@ INSERT INTO `category` (`id`, `name`) VALUES
 (6, 'Phụ Kiện'),
 (7, 'Husky'),
 (8, 'Pug');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `feedback`
---
-
-CREATE TABLE `feedback` (
-  `id` int(11) NOT NULL,
-  `firstName` varchar(30) DEFAULT NULL,
-  `lastName` varchar(30) DEFAULT NULL,
-  `email` varchar(150) DEFAULT NULL,
-  `phoneNumber` varchar(20) DEFAULT NULL,
-  `sujectName` varchar(200) DEFAULT NULL,
-  `note` varchar(500) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `galery`
---
-
-CREATE TABLE `galery` (
-  `id` int(11) NOT NULL,
-  `product_id` int(11) DEFAULT NULL,
-  `img` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -110,7 +102,8 @@ INSERT INTO `oders` (`id`, `user_id`, `fullname`, `email`, `phoneNumber`, `city`
 (37, 3, 'Thắm', 'abcde@gmail.com', '0918273512', 'Phú Thọ', 'ABC- DBC', 'không', 'offline', '2023-05-20 15:55:43', 'đã xác nhận', 46000000),
 (38, 3, 'VU Thanh Dat', 'abcde@gmail.com', '09249863581', 'Hai Duong', 'Xom cong dong, Luong Xa, Luong Dien', 'k', 'offline', '2023-05-20 18:28:07', 'đã hủy đơn', 78000000),
 (39, 3, 'VU Thanh Dat', 'abcde@gmail.com', '0918273512', 'Hai Duong', 'Xom cong dong, Luong Xa, Luong Dien', '', 'offline', '2023-05-20 18:30:04', 'đã xác nhận', 12000000),
-(40, 3, 'Thắm', 'abcde@gmail.com', '0918273512', 'Phú Thọ', 'ABC- DBC', '', 'offline', '2023-05-22 17:33:19', 'đã hủy đơn', 24000000);
+(40, 3, 'Thắm', 'abcde@gmail.com', '0918273512', 'Phú Thọ', 'ABC- DBC', '', 'offline', '2023-05-22 17:33:19', 'đã hủy đơn', 24000000),
+(41, 1, 'VU Thanh Dat', 'abcde@gmail.com', '0918273512', 'Hai Duong', 'Xom cong dong, Luong Xa, Luong Dien', '', 'online', '2023-06-13 14:34:02', 'đã xác nhận', 13000000);
 
 -- --------------------------------------------------------
 
@@ -149,7 +142,8 @@ INSERT INTO `oder_details` (`id`, `oder_id`, `product_id`, `quantity`, `total_mo
 (26, 38, 2, 3, 36000000),
 (27, 38, 8, 3, 42000000),
 (28, 39, 2, 1, 12000000),
-(29, 40, 2, 2, 24000000);
+(29, 40, 2, 2, 24000000),
+(30, 41, 5, 1, 13000000);
 
 -- --------------------------------------------------------
 
@@ -193,26 +187,6 @@ INSERT INTO `product` (`id`, `category_id`, `name`, `price`, `quantity`, `img`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `role`
---
-
-CREATE TABLE `role` (
-  `id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `role`
---
-
-INSERT INTO `role` (`id`, `name`, `email`, `password`) VALUES
-(1, 'Dương Thắng', 'admin@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef');
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `users`
 --
 
@@ -242,23 +216,16 @@ INSERT INTO `users` (`id`, `name`, `email`, `phoneNumber`, `address`, `password`
 --
 
 --
+-- Chỉ mục cho bảng `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `feedback`
---
-ALTER TABLE `feedback`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `galery`
---
-ALTER TABLE `galery`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`);
 
 --
 -- Chỉ mục cho bảng `oders`
@@ -283,12 +250,6 @@ ALTER TABLE `product`
   ADD KEY `category_id` (`category_id`);
 
 --
--- Chỉ mục cho bảng `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
@@ -300,46 +261,34 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT cho bảng `category`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `feedback`
---
-ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `galery`
---
-ALTER TABLE `galery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT cho bảng `oders`
 --
 ALTER TABLE `oders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT cho bảng `oder_details`
 --
 ALTER TABLE `oder_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT cho bảng `role`
---
-ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
@@ -350,12 +299,6 @@ ALTER TABLE `users`
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
-
---
--- Các ràng buộc cho bảng `galery`
---
-ALTER TABLE `galery`
-  ADD CONSTRAINT `galery_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
 
 --
 -- Các ràng buộc cho bảng `oders`
@@ -380,7 +323,7 @@ ALTER TABLE `product`
 -- Các ràng buộc cho bảng `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `admin` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
