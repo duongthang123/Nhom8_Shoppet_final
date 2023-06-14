@@ -22,7 +22,16 @@ class Product extends Model
         $result = $this->dbConnection->query($sql);
         
         return $result->fetch_all(MYSQLI_ASSOC);    
-}
+    }
+
+    public function searchProductAd($searchValue)
+    {
+        $sql = "SELECT * FROM product WHERE id LIKE '%$searchValue%' OR name LIKE '%$searchValue%'";
+        $result = $this->dbConnection->query($sql);
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getProductForShop($limit = 16)
     {
         $sql = "SELECT * FROM product LIMIT $limit";
@@ -74,6 +83,7 @@ class Product extends Model
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    
     public function create($data)
     {
         $category_id = $data['category_id'];

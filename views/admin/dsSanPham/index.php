@@ -40,12 +40,12 @@
                             <button id="bntAdd" type="submit">Thêm sản phẩm mới</button>
                         </div>
 
-                        <div class="browse">
-                           <input type="search" placeholder="Search" class="record-search">
+                        <form class="browse" action="index.php?controller=product&action=search&module=admin" method="POST">
+                           <input type="search" name="searchValue" placeholder="Search" class="record-search">
                             <select name="" id="">
                                 <option value="">Status</option>
                             </select>
-                        </div>
+                        </form>
                     </div>
 
                     <div>

@@ -21,6 +21,15 @@ class ProductController
         require "views/admin/dsSanPham/index.php";
     }
 
+    public function search()
+    {
+        $target_file = "public/assets/admin/img/";
+        $searchValue = $_POST['searchValue'];
+        $products = $this->product->searchProductAd($searchValue);
+        require "views/admin/dsSanPham/index.php";
+
+    }
+
     public function see()
     {
         $id = $_GET['id'];
