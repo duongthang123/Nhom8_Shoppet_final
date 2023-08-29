@@ -20,7 +20,7 @@
         <main>
             <div class="page-header">
                 <h1>Dashboard</h1>
-                <small>Home / Dashboard</small>
+                <small>Trang Chủ / Dashboard</small>
             </div>
             
             <div class="page-content">
@@ -68,7 +68,7 @@
 
                     <div class="card">
                         <div class="card-head">
-                            <h2>47,500</h2>
+                            <h2>0</h2>
                             <span class="las la-envelope"></span>
                         </div>
                         <div class="card-progress">
